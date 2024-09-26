@@ -21,12 +21,9 @@ const preparationNotesSlice = createSlice({
     },
 
     updatePreparationNote: (state, action: PayloadAction<PreparationNote>) => {
-      const index = state.preparationNotes.findIndex(
-        (note) => note.id === action.payload.id
+      state.preparationNotes = state.preparationNotes.map((note) =>
+        note.id === action.payload.id ? action.payload : note
       );
-      if (index !== -1) {
-        state.preparationNotes[index] = action.payload;
-      }
     },
 
     deletePreparationNote: (state, action: PayloadAction<string>) => {
