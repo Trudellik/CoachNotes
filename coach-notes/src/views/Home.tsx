@@ -1,5 +1,5 @@
 import React from 'react';
-import ProgrammeList from '../contexts/ProgrammeList/ProgrammeList';
+import ProgrammeList from './ProgrammeList';
 
 const Home = () => {
   return (

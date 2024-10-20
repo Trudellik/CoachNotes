@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Note } from '../../types/Models';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { Note } from '../../types/Models';
 import { generateUUID } from '../../utils/idGeneratorUtil';
 
 interface AddNoteComponentProps {
@@ -12,30 +12,36 @@ interface AddNoteComponentProps {
   onSkipNote: () => void;
 }
 
-const AddNoteComponent = ({
+const AddNoteComponent: React.FC<AddNoteComponentProps> = ({
   onSaveNote,
   onSkipNote,
-}: AddNoteComponentProps) => {
-  const [newNoteType, setNewNoteType] = useState<string>('');
-  const [newNoteContent, setNewNoteContent] = useState<string>('');
+}) => {
+  const [noteType, setNoteType] = useState('');
+  const [validationMessage, setValidationMessage] = useState(''); 
 
-  const handleAddNote = () => {
-    if (!newNoteType.trim()) {
+  const handleSave = () => {
+    if (noteType.trim() === '') {
+      setValidationMessage('Note type cannot be empty. Please enter a valid type.');
       return;
     }
 
     const newNote: Note = {
       id: generateUUID(),
       order: 1,
-      type: newNoteType,
-      content: newNoteContent,
+      type: noteType,
+      content: '',
     };
 
     onSaveNote(newNote);
-
-    setNewNoteType('');
-    setNewNoteContent('');
+    setNoteType('');
+    setValidationMessage('');
   };
+
+  useEffect(() => {
+    if (noteType.trim() !== '') {
+      setValidationMessage('');
+    }
+  }, [noteType]);
 
   return (
     <div
@@ -45,25 +51,41 @@ const AddNoteComponent = ({
         paddingRight: '4px',
         borderRadius: '8px',
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: 'column',
         marginBottom: '16px',
       }}
     >
-      <TextField
-        label="Note Name"
-        variant="outlined"
-        value={newNoteType}
-        onChange={(e) => setNewNoteType(e.target.value)}
-        fullWidth
-        sx={{ backgroundColor: '#ffffff' }}
-      />
-
-      <IconButton color="primary" onClick={handleAddNote}>
-        <AddCircleIcon fontSize="large" />
-      </IconButton>
-      <IconButton color="error" onClick={onSkipNote}>
-        <HighlightOffIcon fontSize="large" />
-      </IconButton>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <TextField
+          label="Note Type"
+          variant="outlined"
+          value={noteType}
+          onChange={(e) => setNoteType(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSave();
+            }
+          }}
+          fullWidth
+          autoFocus 
+          sx={{ backgroundColor: '#ffffff' }}
+        />
+        <IconButton color="primary" onClick={handleSave}>
+          <AddCircleIcon fontSize="large" />
+        </IconButton>
+        <IconButton color="error" onClick={onSkipNote}>
+          <HighlightOffIcon fontSize="large" />
+        </IconButton>
+      </div>
+      {validationMessage && (
+        <Typography
+          variant="body2"
+          color="error"
+          sx={{ marginTop: '8px', textAlign: 'left' }}
+        >
+          {validationMessage}
+        </Typography>
+      )}
     </div>
   );
 };

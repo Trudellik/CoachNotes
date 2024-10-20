@@ -7,6 +7,7 @@ import dateTransform from './dateTransformConfig';
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['auth', 'programme', 'preparationNotes'],
   transform: [dateTransform],
 };
 

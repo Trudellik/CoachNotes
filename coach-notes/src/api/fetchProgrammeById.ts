@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { mockProgrammes } from '../assets/testData';
+import { mockProgrammes } from '../assets/mockProgrammes';
 import { Programme } from '../types/Models';
 import axios from 'axios';
 

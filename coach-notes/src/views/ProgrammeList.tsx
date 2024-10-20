@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import ProgrammeRow from './ProgrammeRow';
-import { Programme } from '../../types/Models';
+import ProgrammeRow from '../contexts/ProgrammeList/ProgrammeRow';
+import { Programme } from '../types/Models';
 import dayjs from 'dayjs';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import addProgramme from '../../api/addProgramme';
-import AddProgrammeDialog from '../AddProgramme/AddProgrammeDialog';
-import { selectProgrammes } from '../../features/programmeSlice';
+import { useAppSelector } from '../hooks/useAppSelector';
+import { useAppDispatch } from '../hooks/useAppDispatch';
+import addProgramme from '../api/addProgramme';
+import AddProgrammeDialog from '../contexts/AddProgramme/AddProgrammeDialog';
+import { selectProgrammes } from '../features/programmeSlice';
+import { Typography } from '@mui/material';
 
 const ProgrammeList = () => {
   const dispatch = useAppDispatch();
@@ -56,7 +57,7 @@ const ProgrammeList = () => {
       </div>
 
       <div>
-        <h2>Programme List</h2>
+        <Typography variant='h4' >Programme List</Typography>
         {programmes.length === 0 ? (
           <p>No programmes available. Click "Add" to create a new one.</p>
         ) : (

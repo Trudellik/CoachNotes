@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Programme } from '../types/Models';
 import { RootState } from '../app/store';
-import { mockProgrammes } from '../assets/testData';
+import { mockProgrammes } from '../assets/mockProgrammes';
 
 interface ProgrammeState {
   list: Programme[];

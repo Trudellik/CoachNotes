@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { PreparationNote, Programme } from '../types/Models';
+import { Programme } from '../types/Models';
 import { generateUUID } from '../utils/idGeneratorUtil';
 
 export const mockProgrammes: Programme[] = [
@@ -82,8 +82,7 @@ Pullups/CTB
 Metcon
 For time:
 16 CTB/Pullups
-16 Deadlifts (100/70
-kg)
+16 Deadlifts (100/70 kg)
 16 Cal Bike
 13 CTB/Pullups
 13 Deadlifts
@@ -92,9 +91,7 @@ kg)
 10 Deadlifts
 10 Cal Bike
 Timecap: 12 min.
-Note:
-Deadlifts should be
-done UB.
+Note: Deadlifts should be done UB.
     `,
     attentionNote:
       '2 and 2 can share equipment in metcon and start staggered. Bring both echo and bikeerg into play for this one.',
@@ -109,15 +106,11 @@ Every 90s x 8:
 1 High hang snatch
 + 1 Hang snatch
 + 1 Low hang snatch
-*Technique before
-weights. Add load
-after each successful
-set.
+*Technique before weights. Add load after each successful set.
 Metcon
 21-18-15-12-9
 Burpees
-DB snatches (22,5/15
-kg)
+DB snatches (22,5/15 kg)
 Timecap: 8 min.
     `,
     attentionNote: 'No apparent issues.',
@@ -131,16 +124,12 @@ Timecap: 8 min.
 Beatswing/T2B
 Metcon
 EMOM x 10:
-8 Thrusters (20/15
-kg) + 8 T2B
+8 Thrusters (20/15 kg) + 8 T2B
 Rest 3 min.
 EMOM x 10:
-8 Thrusters (20/15
-kg) + 24 DU
+8 Thrusters (20/15 kg) + 24 DU
 Note:
-They should have
-around 10s rest each
-minute.
+They should have around 10s rest each minute.
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -153,43 +142,16 @@ minute.
 Teams of 2:
 On the 0:00
 15-12-9
-Synchro frontsquats
-(60/40 kg)
-Synchro burpees over
-bar
+Synchro frontsquats (60/40 kg)
+Synchro burpees over bar
 On the 6:00
 12-9-6
-Synchro frontsquats
-(75/50 kg)
-Synchro burpees over
-bar
+Synchro frontsquats (75/50 kg)
+Synchro burpees over bar
 On the 12:00
 9-6-3
-Synchro frontsquats
-(90/60 kg)
-Synchro burpees over
-bar
-On the 15:00
-RepeatMetcon
-Teams of 2:
-On the 0:00
-15-12-9
-Synchro frontsquats
-(60/40 kg)
-Synchro burpees over
-bar
-On the 6:00
-12-9-6
-Synchro frontsquats
-(75/50 kg)
-Synchro burpees over
-bar
-On the 12:00
-9-6-3
-Synchro frontsquats
-(90/60 kg)
-Synchro burpees over
-bar
+Synchro frontsquats (90/60 kg)
+Synchro burpees over bar
 On the 15:00
 Repeat
     `,
@@ -213,19 +175,15 @@ Repeat
 HSPU
 Metcon
 AMRAP 4:
-10 KB swings
-(24/16 kg)
+10 KB swings (24/16 kg)
 10 C2B/Pullups
 Rest 4 min.
 AMRAP 4:
-10 Box jumps
-(24”/20”)
+10 Box jumps (24”/20”)
 10 HSPU
 Rest 4 min.
 AMRAP 4:
-5 One arm Devil
-presses (22,5/15
-kg)
+5 One arm Devil presses (22,5/15 kg)
 5 Wall Walks
     `,
     attentionNote: 'No apparent issues.',
@@ -240,15 +198,11 @@ Every 90s x 8:
 1 High hang clean
 + 1 Hang clean
 + 1 Low hang clean
-*Technique before
-weights. Add load after
-each successful set.
+*Technique before weights. Add load after each successful set.
 Metcon
 E3MOM x 5:
-10 Power Cleans
-(70/55kg)
-Max Double Unders
-until 2m mark
+10 Power Cleans (70/55kg)
+Max Double Unders until 2m mark
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -261,11 +215,9 @@ until 2m mark
 Modified “Eva”
 6 rounds for time:
 400m Run
-15 KB swings (32/24
-kg)
+15 KB swings (32/24kg)
 15 Pullups
-RX+ = with weight
-vest
+RX+ = with weight vest
 Timecap: 32 min.
     `,
     attentionNote:
@@ -286,9 +238,7 @@ Metcon
 3 rounds for time:
 18/14 Cal Echo bike
 15 HSPU
-*After each round 20m
-farmers walk (2x32/24
-kg KB)
+*After each round 20m farmers walk (2x32/24kg KB)
 Timecap: 12 min.
     `,
     attentionNote:
@@ -302,8 +252,7 @@ Timecap: 12 min.
       Skill
 Bar MU
 Metcon
-“Annie with burpees
-and Bar MU”
+“Annie with burpees and Bar MU”
 5-4-3-2-1
 Bar MU
 50-40-30-20-10
@@ -314,9 +263,7 @@ Burpees
 Sit Ups
 Timecap: 18 min.
 Note:
-Either scale DU to
-single unders or scale
-the reps.
+Either scale DU to single unders or scale the reps.
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -326,13 +273,11 @@ the reps.
     date: dayjs('2024-03-14'),
     programme: `
       Metcon
-Teams of 2 (split
-anyhow)
+Teams of 2 (split anyhow)
 3 rounds of:
 80 Wallballs (9/6 kg)
 60m HSW
-40 Double KB clean
-(2x24/16 kg)
+40 Double KB clean (2x24/16 kg)
 10 Rope climbs
 Timecap: 30 min.
     `,
@@ -356,16 +301,13 @@ Timecap: 30 min.
 EMOM x 12:
 1 Hang snatch
 + 1 Overhead squat
-*Start at 50% and build
-up every minute.
+*Start at 50% and build up every minute.
 Metcon
 For time:
 25 Bar Facing Burpees
-25 Hang squat snatches
-(50/35 kg)
+25 Hang squat snatches (50/35 kg)
 25 Cal
-25 Hang squat snatches
-(50/35 kg)
+25 Hang squat snatches (50/35 kg)
 25 Bar Facing Burpees
 Timecap: 13 min.
     `,
@@ -394,16 +336,14 @@ AMRAP 30:
 HSPU
 Every 30s x 10:
 5 HSPU
-*Scale the HSPU so
-it matches you.
+*Scale the HSPU so it matches you.
 Metcon
 AMRAP 15:
 21/15 Cal
 Into,
 3 rounds:
 2 Bar MU
-4 Squat Cleans
-(70/50 kg)
+4 Squat Cleans (70/50 kg)
 6 Pistols
     `,
     attentionNote: '2 and 2 can share a machine, and start with a 2m delay.',
@@ -417,14 +357,11 @@ Into,
 Every 90s x 8:
 1 Push Press
 + 1 Push jerk
-*Technique before
-weights.
+*Technique before weights.
 Metcon
 3 rounds for time:
-10 Push Jerks (70/45
-kg)
-15 Pullups/Chest to
-bar
+10 Push Jerks (70/45 kg)
+15 Pullups/Chest to bar
 400m Run
 Timecap: 12 min.
     `,
@@ -438,12 +375,9 @@ Timecap: 12 min.
       Metcon
 Max rounds of:
 12 Burpees
-13 Box jumps
-(30”/24”)
-14 DB snatch
-(32/22,5 kg)
-Rest 1 min. after
-each round
+13 Box jumps (30”/24”)
+14 DB snatch (32/22,5 kg)
+Rest 1 min. after each round
 Timecap: 32 min.
     `,
     attentionNote: '2 and 2 can share, starting staggered.',
@@ -461,10 +395,8 @@ A2. Chin-ups
 *RPE 9-10/10
 Metcon
 5 rounds for time:
-10 Frontsquats (80/50
-kg)
-20 KB swings (32/24
-kg)
+10 Frontsquats (80/50 kg)
+20 KB swings (32/24 kg)
 30 DU
 Timecap: 16 min.
     `,
@@ -478,18 +410,11 @@ Timecap: 16 min.
     programme: `
       Metcon
 Teams of 2
-4 rounds for
-time:
-800m Run
-(both)
-10 Synchro
-Deadlifts
-(120/80 kg)
-20 Burpee
-Boxjumps
-(24”/20”)
-Timecap: 24
-min.
+4 rounds for time:
+800m Run (both)
+10 Synchro Deadlifts (120/80 kg)
+20 Burpee Boxjumps (24”/20”)
+Timecap: 24 min.
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -507,10 +432,8 @@ Buy in:
 In remaining time,
 AMRAP:
 4 TTB
-8 One arm DB thrusters
-(22,5/15 kg)
-12 DB hang clean and
-jerk (22,5/15 kg)
+8 One arm DB thrusters (22,5/15 kg)
+12 DB hang clean and jerk (22,5/15 kg)
     `,
     attentionNote:
       '2 and 2 can share machine, start people staggered (give 4m TC on the cal).',
@@ -524,8 +447,7 @@ jerk (22,5/15 kg)
 AMRAP ”Nancy”
 AMRAP 22
 400m Run
-15 Overhead squats (43/29
-kg)
+15 Overhead squats (43/29 kg)
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -543,8 +465,7 @@ Metcon
 30 DU
 Rest 1 minutes
 Timecap: 15 min.
-Note: Scale 10m HSW
-to 3 Wall Walks
+Note: Scale 10m HSW to 3 Wall Walks
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -568,8 +489,7 @@ AMRAP 4:
 AMRAP 4:
 21/15 Cal
 21 Wallballs (9/6 kg)
-21 Burpees over
-rower
+21 Burpees over rower
 2 min. rest
 AMRAP 4:
 15/9 Cal
@@ -586,17 +506,12 @@ AMRAP 4:
       Weightlifting
 Every 90s x 8:
 1 Hang Snatch
-+ 1 Low Hang
-Snatch
++ 1 Low Hang Snatch
 + 1 Snatch
-*Technique before
-weights. Add load
-after each successful
-set.
+*Technique before weights. Add load after each successful set.
 Metcon
 AMRAP 9:
-4 Snatches (50/35
-kg)
+4 Snatches (50/35kg)
 8 TTB
     `,
     attentionNote: 'No apparent issues.',
@@ -609,8 +524,7 @@ kg)
       Metcon
 4 rounds for time:
 20 HSPU
-30 Double KB snatch
-(24/16 kg)
+30 Double KB snatch (24/16 kg)
 40/30 Cal Echo bike
 Timecap: 20 min.
     `,
@@ -625,13 +539,9 @@ Timecap: 20 min.
       Metcon
 Teams of 2
 AMRAP 26
-12 BB Push Press
-(40/30kg)
-12 DB Snatch
-(22.5/15kg)
-12 High burpee
-boxjump overs
-(30”/24”)
+12 BB Push Press (40/30kg)
+12 DB Snatch (22.5/15kg)
+12 High burpee boxjump overs (30”/24”)
     `,
     attentionNote: 'No apparent issues.',
   },
@@ -645,15 +555,11 @@ Every 90s x 8:
 1 Hang clean
 + 1 Low Hang clean
 + 1 Clean
-*Technique before
-weights. Add load
-after each successful
-set.
+*Technique before weights. Add load after each successful set.
 B. Metcon
 ”DT”
 5 RFT:
-12 Deadlift (70/47,5
-kg)
+12 Deadlift (70/47,5kg)
 9 Hang power clean
 6 Push jerks
 Timecap: 9 min.
@@ -669,8 +575,7 @@ Timecap: 9 min.
 Beatswing/TTB
 B. Metcon
 4 rounds for time:
-20 F.R. walking lunges
-(50/35 kg)
+20 F.R. walking lunges (50/35 kg)
 15 TTB
 10 Burpees over bar
 Timecap: 15 min.
@@ -679,16 +584,4 @@ Timecap: 15 min.
   },
 ];
 
-export const mockPreparationNotes: PreparationNote[] = [
-  {
-    id: generateUUID(),
-    programmeId: mockProgrammes[0].id,
-    notes: [
-      {
-        order: 1,
-        type: 'time',
-        content: 'test',
-      },
-    ],
-  },
-];
+

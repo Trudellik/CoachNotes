@@ -15,11 +15,22 @@ interface PreparationNotesProps {
 const PreparationNotes = ({
   preparationNotes,
   isEditMode,
+  onSavePreparation,
+  onCancelPreparation,
 }: PreparationNotesProps) => {
   const [editableNotes, setEditableNotes] = useState<Note[]>(
     preparationNotes?.notes || []
   );
   const [showAddNoteInput, setShowAddNoteInput] = useState<boolean>(false);
+  const [focusedNoteId, setFocusedNoteId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isEditMode && editableNotes.length === 0) {
+      setShowAddNoteInput(true);
+    } else {
+      setShowAddNoteInput(false);
+    }
+  }, [isEditMode, editableNotes.length]);
 
   const handleNoteChange = (id: string, content: string) => {
     setEditableNotes((prevNotes) =>
@@ -30,6 +41,7 @@ const PreparationNotes = ({
   const handleAddNote = (newNote: Note) => {
     setEditableNotes((prevNotes) => [...prevNotes, newNote]);
     setShowAddNoteInput(false);
+    setFocusedNoteId(newNote.id); // Set the new note to be focused
   };
 
   const handleSkipNewNote = () => {
@@ -46,6 +58,7 @@ const PreparationNotes = ({
         Notes:
       </Typography>
 
+      {/* Display existing notes if available */}
       {editableNotes.length > 0 ? (
         editableNotes.map((note) => (
           <NoteItem
@@ -54,25 +67,30 @@ const PreparationNotes = ({
             isEditMode={isEditMode}
             handleRemoveNote={handleRemoveNote}
             handleNoteChange={handleNoteChange}
+            autoFocus={note.id === focusedNoteId} // Autofocus on the new note
           />
         ))
       ) : (
-        <Typography
-          variant="body1"
-          sx={{
-            backgroundColor: '#fce4ec',
-            padding: '16px',
-            borderRadius: '8px',
-            textAlign: 'center',
-            marginBottom: '16px',
-            fontStyle: 'italic',
-          }}
-        >
-          Hmm... looks like there aren't any notes yet. <br />
-          Want to add one?
-        </Typography>
+        // Show the placeholder message only if `AddNoteComponent` is not visible
+        !showAddNoteInput && (
+          <Typography
+            variant="body1"
+            sx={{
+              backgroundColor: '#fce4ec',
+              padding: '16px',
+              borderRadius: '8px',
+              textAlign: 'center',
+              marginBottom: '16px',
+              fontStyle: 'italic',
+            }}
+          >
+            Hmm... looks like there aren't any notes yet. <br />
+            Want to add one?
+          </Typography>
+        )
       )}
 
+      {/* If in edit mode, show the AddNoteComponent or Add Note Button based on `showAddNoteInput` */}
       {isEditMode &&
         (showAddNoteInput ? (
           <AddNoteComponent
@@ -84,6 +102,7 @@ const PreparationNotes = ({
             variant="contained"
             color="primary"
             onClick={() => setShowAddNoteInput(true)}
+            sx={{ marginTop: '16px' }}
           >
             Add Note
           </Button>

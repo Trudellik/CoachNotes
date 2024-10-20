@@ -20,3 +20,14 @@ export type Note = {
   type: string;
   content: string;
 };
+
+export type Exercise = {
+  readonly id: string;
+  name: string;
+  alias: string[];
+  pointOfPerformance: string[];
+  equipments: string[];
+  muscleWorked: string[];
+  videoUrl: string;
+  previewImage: string;
+}

@@ -11,18 +11,19 @@ interface NoteItemProps {
   isEditMode: boolean;
   handleRemoveNote: (id: string) => void;
   handleNoteChange: (id: string, content: string) => void;
+  autoFocus?: boolean;
 }
 
-const NoteItem = ({
+const NoteItem: React.FC<NoteItemProps> = ({
   note,
   isEditMode,
   handleRemoveNote,
   handleNoteChange,
-}: NoteItemProps) => {
+  autoFocus = false,
+}) => {
   return (
     <div
       className="note-container"
-      key={note.id}
       style={{
         backgroundColor: '#f3e5f5',
         padding: '16px',
@@ -59,6 +60,7 @@ const NoteItem = ({
           fullWidth
           rows={3}
           variant="outlined"
+          autoFocus={autoFocus}
           sx={{
             backgroundColor: '#ffffff',
             borderRadius: '8px',
@@ -76,7 +78,7 @@ const NoteItem = ({
             whiteSpace: 'pre-wrap',
           }}
         >
-          {note.content}
+          {note.content || 'No content available.'}
         </Typography>
       )}
     </div>

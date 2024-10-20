@@ -6,9 +6,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux'; // Import useDispatch to use with redux actions
 import { APP_NAME } from '../config/constants';
+import { resetStore } from '../features/resetActions'; // Import the reset action
 
 const Layout = () => {
+  const dispatch = useDispatch();
+
+  // Handler to dispatch the resetStore action
+  const handleResetClick = () => {
+    dispatch(resetStore());
+  };
+
   return (
     <Box
       display="flex"
@@ -27,6 +36,13 @@ const Layout = () => {
           </Button>
           <Button color="inherit" component={Link} to="/programme">
             All Programmes
+          </Button>
+          <Button color="inherit" component={Link} to="/exercise">
+            Exercises
+          </Button>
+          {/* Add the Sign Out button */}
+          <Button color="inherit" onClick={handleResetClick}>
+            Sign Out
           </Button>
         </Toolbar>
       </AppBar>

@@ -5,7 +5,6 @@ import { useAppSelector } from '../hooks/useAppSelector';
 import {
   addPreparationNote,
   updatePreparationNote,
-  deletePreparationNote,
 } from '../features/preparationNoteSlice';
 import { selectProgrammeById } from '../features/programmeSlice';
 import { selectPreparationNotesByProgrammeId } from '../features/preparationNoteSlice';
@@ -15,39 +14,41 @@ import PreparationNotes from '../contexts/ProgrammeDisplay/PreparationNotes';
 import Grid from '@mui/material/Grid';
 import ProgrammeContent from '../contexts/ProgrammeDisplay/ProgrammeContent';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import { PreparationNote, Note } from '../types/Models';
 import { generateUUID } from '../utils/idGeneratorUtil';
 import dayjs from 'dayjs';
+import NotesActionButtons from '../components/NotesActionButtons';
 
 const ProgrammePage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
 
-  const programme = useAppSelector(selectProgrammeById(id!));
-  const preparationNotes = useAppSelector(
-    selectPreparationNotesByProgrammeId(id!)
-  );
+// Check if id is undefined before using it
+if (!id) {
+  return <Typography variant="h6" color="error">Invalid Programme ID.</Typography>;
+}
+
+const programme = useAppSelector(selectProgrammeById(id));
+const preparationNotes = useAppSelector(selectPreparationNotesByProgrammeId(id));
+
+  const dispatch = useDispatch();
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [editableNotes, setEditableNotes] = useState<Note[]>([]);
+  const hasNotes = preparationNotes && preparationNotes.notes ? preparationNotes.notes.length > 0 : false;
 
   useEffect(() => {
-    if (preparationNotes?.notes) {
+    if (preparationNotes) {
       setEditableNotes(preparationNotes.notes);
-    } else {
-      setEditableNotes([]);
     }
   }, [preparationNotes]);
 
-  // Adjusted handleCreateClick to set isEditMode and initialize editableNotes
   const handleCreateClick = () => {
     setIsEditMode(true);
     setEditableNotes([
       {
         id: generateUUID(),
         order: 1,
-        type: '', // Empty type for user input
+        type: '', 
         content: '',
       },
     ]);
@@ -65,25 +66,12 @@ const ProgrammePage = () => {
     } else {
       dispatch(addPreparationNote(updatedPreparationNote));
     }
-
     setIsEditMode(false);
   };
 
   const handleCancelClick = () => {
-    if (preparationNotes?.notes) {
-      setEditableNotes(preparationNotes.notes);
-    } else {
-      setEditableNotes([]);
-    }
+    setEditableNotes(preparationNotes?.notes || []);
     setIsEditMode(false);
-  };
-
-  const handleDeleteLastNote = () => {
-    if (editableNotes.length === 0 && preparationNotes) {
-      dispatch(deletePreparationNote(preparationNotes.id));
-      setEditableNotes([]);
-      setIsEditMode(false);
-    }
   };
 
   if (!programme) {
@@ -112,6 +100,8 @@ const ProgrammePage = () => {
             </Typography>
           </Box>
         </Grid>
+
+        {/* Class Preparation Section */}
         <Grid item xs={12} md={5}>
           <Box
             sx={{
@@ -130,66 +120,15 @@ const ProgrammePage = () => {
                 justifyContent: 'flex-end',
               }}
             >
-              {/* Adjusted buttons rendering logic */}
-              {!preparationNotes ? (
-                isEditMode ? (
-                  <>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleSaveClick(editableNotes)}
-                    >
-                      Save
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="secondary"
-                      onClick={handleCancelClick}
-                      sx={{ marginLeft: '8px' }}
-                    >
-                      Cancel
-                    </Button>
-                  </>
-                ) : (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleCreateClick}
-                  >
-                    Create Notes
-                  </Button>
-                )
-              ) : (
-                <>
-                  {isEditMode ? (
-                    <>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => handleSaveClick(editableNotes)}
-                      >
-                        Save
-                      </Button>
-                      <Button
-                        variant="outlined"
-                        color="secondary"
-                        onClick={handleCancelClick}
-                        sx={{ marginLeft: '8px' }}
-                      >
-                        Cancel
-                      </Button>
-                    </>
-                  ) : (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => setIsEditMode(true)}
-                    >
-                      Edit Notes
-                    </Button>
-                  )}
-                </>
-              )}
+              <NotesActionButtons
+                hasPreparationNotes={hasNotes}
+                isEditMode={isEditMode}
+                editableNotes={editableNotes}
+                onSave={handleSaveClick}
+                onCancel={handleCancelClick}
+                onCreate={handleCreateClick}
+                onEdit={() => setIsEditMode(true)}
+              />
             </Box>
           </Box>
         </Grid>
@@ -202,11 +141,10 @@ const ProgrammePage = () => {
         {/* Preparation Notes Section */}
         <Grid item xs={12} md={5}>
           <PreparationNotes
-            preparationNotes={{ ...preparationNotes, notes: editableNotes }}
+            preparationNotes={preparationNotes!}
             isEditMode={isEditMode}
             onSavePreparation={handleSaveClick}
             onCancelPreparation={handleCancelClick}
-            onDeleteLastNote={handleDeleteLastNote}
           />
         </Grid>
       </Grid>

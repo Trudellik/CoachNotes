@@ -2,20 +2,30 @@ import { Action, combineReducers } from 'redux';
 import authReducer from '../features/authSlice';
 import programmeReducer from '../features/programmeSlice';
 import preparationNotesReducer from '../features/preparationNoteSlice';
+import exerciseReducer from '../features/exerciseSlice';
 import { ThunkAction } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
 import { store } from '../config/configureStore';
+import { resetStore } from '../features/resetActions';
+import businessValuesReducer from '../features/businessValuesSlice';
 
-export const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth: authReducer,
   programme: programmeReducer,
   preparationNotes: preparationNotesReducer,
+  exercise: exerciseReducer,
+  businessValues: businessValuesReducer,
 });
 
-// Infer the type of `store`
+export const rootReducer = (state: any, action: any) => {
+  if (resetStore.match(action)) {
+    storage.removeItem('persist:root');
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
+
 export type AppStore = typeof store;
-// Infer the `AppDispatch` type from the store itself
 export type AppDispatch = typeof store.dispatch;
-// Same for the `RootState` type
 export type RootState = ReturnType<typeof store.getState>;
-// Export a reusable type for handwritten thunks
 export type AppThunk = ThunkAction<void, RootState, unknown, Action>;

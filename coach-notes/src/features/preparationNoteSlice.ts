@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PreparationNote } from '../types/Models';
-import { mockPreparationNotes } from '../assets/testData';
 import { deleteProgramme } from './programmeSlice';
 import { RootState } from '../app/store';
+import { mockPreparationNotes } from '../assets/mockPreparationNotes';
 
 interface PreparationNotesState {
   preparationNotes: PreparationNote[];
