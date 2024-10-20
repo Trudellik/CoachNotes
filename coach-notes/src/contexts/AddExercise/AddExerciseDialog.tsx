@@ -5,7 +5,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { selectEquipments, selectMusclesWorked } from '../../features/businessValuesSlice';
+import {
+  selectEquipments,
+  selectMusclesWorked,
+} from '../../features/businessValuesSlice';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -18,7 +21,11 @@ interface AddExerciseDialogProps {
   onAdd: () => void;
 }
 
-const AddExerciseDialog: React.FC<AddExerciseDialogProps> = ({ open, onClose, onAdd }) => {
+const AddExerciseDialog: React.FC<AddExerciseDialogProps> = ({
+  open,
+  onClose,
+  onAdd,
+}) => {
   const equipments = useAppSelector(selectEquipments);
   const musclesWorked = useAppSelector(selectMusclesWorked);
 
@@ -26,7 +33,6 @@ const AddExerciseDialog: React.FC<AddExerciseDialogProps> = ({ open, onClose, on
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>Add New Exercise</DialogTitle>
       <DialogContent>
-        {/* AddExercise form fields go here */}
         <TextField
           label="Exercise Name"
           variant="outlined"
@@ -47,7 +53,13 @@ const AddExerciseDialog: React.FC<AddExerciseDialogProps> = ({ open, onClose, on
         />
         <FormControl fullWidth margin="normal" variant="outlined">
           <InputLabel id="equipments-label">Equipments</InputLabel>
-          <Select labelId="equipments-label" label="Equipments" multiple value={[]} onChange={() => {}}>
+          <Select
+            labelId="equipments-label"
+            label="Equipments"
+            multiple
+            value={[]}
+            onChange={() => {}}
+          >
             {equipments.map((equipment) => (
               <MenuItem key={equipment} value={equipment}>
                 {equipment}
@@ -57,7 +69,13 @@ const AddExerciseDialog: React.FC<AddExerciseDialogProps> = ({ open, onClose, on
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">
           <InputLabel id="muscles-worked-label">Muscles Worked</InputLabel>
-          <Select labelId="muscles-worked-label" label="Muscles Worked" multiple value={[]} onChange={() => {}}>
+          <Select
+            labelId="muscles-worked-label"
+            label="Muscles Worked"
+            multiple
+            value={[]}
+            onChange={() => {}}
+          >
             {musclesWorked.map((muscle) => (
               <MenuItem key={muscle} value={muscle}>
                 {muscle}

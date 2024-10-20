@@ -22,19 +22,27 @@ import NotesActionButtons from '../components/NotesActionButtons';
 const ProgrammePage = () => {
   const { id } = useParams();
 
-// Check if id is undefined before using it
-if (!id) {
-  return <Typography variant="h6" color="error">Invalid Programme ID.</Typography>;
-}
+  if (!id) {
+    return (
+      <Typography variant="h6" color="error">
+        Invalid Programme ID.
+      </Typography>
+    );
+  }
 
-const programme = useAppSelector(selectProgrammeById(id));
-const preparationNotes = useAppSelector(selectPreparationNotesByProgrammeId(id));
+  const programme = useAppSelector(selectProgrammeById(id));
+  const preparationNotes = useAppSelector(
+    selectPreparationNotesByProgrammeId(id)
+  );
 
   const dispatch = useDispatch();
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [editableNotes, setEditableNotes] = useState<Note[]>([]);
-  const hasNotes = preparationNotes && preparationNotes.notes ? preparationNotes.notes.length > 0 : false;
+  const hasNotes =
+    preparationNotes && preparationNotes.notes
+      ? preparationNotes.notes.length > 0
+      : false;
 
   useEffect(() => {
     if (preparationNotes) {
@@ -48,7 +56,7 @@ const preparationNotes = useAppSelector(selectPreparationNotesByProgrammeId(id))
       {
         id: generateUUID(),
         order: 1,
-        type: '', 
+        type: '',
         content: '',
       },
     ]);

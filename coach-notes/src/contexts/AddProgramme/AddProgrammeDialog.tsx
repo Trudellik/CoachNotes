@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Programme } from '../../types/Models';
 import { Dayjs } from 'dayjs';
 import { generateUUID } from '../../utils/idGeneratorUtil';
@@ -21,7 +21,6 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
   onClose,
   onSubmit,
 }) => {
-  // Local state to manage the form inputs
   const [programme, setProgramme] = useState<Omit<Programme, 'id'>>({
     name: '',
     date: null,
@@ -51,20 +50,18 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
     }
   };
 
-  // Handlers for each input field
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setProgramme((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: false })); // Reset error state when user types
+    setErrors((prev) => ({ ...prev, [name]: false }));
   };
 
   const handleDateChange = (date: Dayjs | null) => {
     setProgramme((prev) => ({ ...prev, date }));
-    setErrors((prev) => ({ ...prev, date: false })); // Reset error state for date
+    setErrors((prev) => ({ ...prev, date: false }));
   };
 
   const handleSubmit = () => {
-    // Validation: check if any required fields are empty
     const hasErrors = {
       name: !programme.name,
       date: !programme.date,
@@ -72,9 +69,8 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
       attentionNote: !programme.attentionNote,
     };
 
-    setErrors(hasErrors); // Set error state for each field
+    setErrors(hasErrors);
 
-    // If any field has an error, block submission
     if (
       hasErrors.name ||
       hasErrors.date ||
@@ -84,7 +80,6 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
       return;
     }
 
-    // All fields are filled, proceed with submission
     const newProgramme: Programme = {
       ...programme,
       id: generateUUID(),
@@ -93,7 +88,6 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
     onClose();
   };
 
-  // Reset all inputs and errors when the cancel button is clicked
   const handleCancel = () => {
     setErrors({
       name: false,
@@ -107,10 +101,10 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
   return (
     <Dialog
       open={isOpen}
-      onClose={handleCancel} // Reset errors and inputs when the dialog is closed
+      onClose={handleCancel}
       aria-labelledby="add-programme-dialog-title"
       TransitionProps={{
-        onEntered: handleFocusOnOpen, // Set focus after the dialog has fully entered the DOM
+        onEntered: handleFocusOnOpen,
       }}
     >
       <DialogTitle id="add-programme-dialog-title">Add Programme</DialogTitle>
@@ -126,7 +120,7 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
           required
           value={programme.name}
           onChange={handleInputChange}
-          error={errors.name} // Show error state if name is empty
+          error={errors.name}
           helperText={errors.name ? 'Programme name is required' : ''}
         />
         <TextField
@@ -142,7 +136,7 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
           required
           value={programme.programme}
           onChange={handleInputChange}
-          error={errors.programme} // Show error state if programme is empty
+          error={errors.programme}
           helperText={errors.programme ? 'Programme is required' : ''}
         />
         <DatePicker
@@ -159,7 +153,7 @@ const AddProgrammeDialog: React.FC<AddProgrammeDialogProps> = ({
               required
               fullWidth
               margin="dense"
-              error={errors.date} // Show an error if the date is missing
+              error={errors.date}
               helperText={errors.date ? 'Date is required' : ''}
             />
           )}

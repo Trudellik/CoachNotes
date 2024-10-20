@@ -30,7 +30,6 @@ const ProgrammeList = () => {
     handleCloseDialog();
   };
 
-  // Group programmes by date
   const groupedProgrammes = programmes.reduce(
     (acc: { [key: string]: Programme[] }, programme: Programme) => {
       const date = dayjs(programme.date);
@@ -50,14 +49,13 @@ const ProgrammeList = () => {
   return (
     <div>
       <div style={{ marginBottom: '16px' }}>
-        {/* Button to open the AddProgrammeDialog */}
         <Button variant="contained" color="primary" onClick={handleOpenDialog}>
           Add
         </Button>
       </div>
 
       <div>
-        <Typography variant='h4' >Programme List</Typography>
+        <Typography variant="h4">Programme List</Typography>
         {programmes.length === 0 ? (
           <p>No programmes available. Click "Add" to create a new one.</p>
         ) : (

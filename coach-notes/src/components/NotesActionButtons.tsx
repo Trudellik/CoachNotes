@@ -21,13 +21,10 @@ const NotesActionButtons = ({
   onCreate,
   onEdit,
 }: NotesActionButtonsProps) => {
-
-   // Render Save and Cancel buttons if in edit mode
   if (isEditMode) {
     return <SaveCancelButtonGroup onSave={onSave} onCancel={onCancel} />;
   }
 
-  // Render Edit or Create buttons based on whether preparation notes exist
   return hasPreparationNotes ? (
     <Button variant="contained" color="primary" onClick={onEdit}>
       Edit Notes

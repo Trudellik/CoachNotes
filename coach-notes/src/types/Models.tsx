@@ -30,4 +30,4 @@ export type Exercise = {
   muscleWorked: string[];
   videoUrl: string;
   previewImage: string;
-}
+};

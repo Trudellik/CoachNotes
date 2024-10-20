@@ -9,15 +9,13 @@ import NotesIcon from '@mui/icons-material/Notes';
 import { selectHasPreparationNotes } from '../../features/preparationNoteSlice';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
-const ProgrammeCard = ({
-  programme,
-  isFirst,
-  isLast,
-}: {
+interface ProgrammeCardProps {
   programme: Programme;
   isFirst: boolean;
   isLast: boolean;
-}) => {
+}
+
+const ProgrammeCard = ({ programme, isFirst, isLast }: ProgrammeCardProps) => {
   const handleClick = () => {
     const scrollPosition = window.scrollY;
     localStorage.setItem('scrollPosition', JSON.stringify(scrollPosition));

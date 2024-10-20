@@ -1,5 +1,4 @@
 import React from 'react';
-import ProgrammeList from './ProgrammeList';
 
 const Home = () => {
   return (

@@ -18,29 +18,25 @@ const initialState: ExerciseState = {
 const exerciseSlice = createSlice({
   name: 'exercise',
   initialState,
-  reducers: {
-    
-  },
+  reducers: {},
 });
 
 export const selectExercises = (state: RootState) => state.exercise.list;
-export const selectExerciseById =
-  (exerciseId: string) => (state: RootState) =>
-    state.exercise.list.find((exercise) => exercise.id === exerciseId);
+export const selectExerciseById = (exerciseId: string) => (state: RootState) =>
+  state.exercise.list.find((exercise) => exercise.id === exerciseId);
 
-  export const selectExercisesAlphabetically = (state: RootState) =>
-    state.exercise.list.slice().sort((a, b) => a.name.localeCompare(b.name));
+export const selectExercisesAlphabetically = (state: RootState) =>
+  state.exercise.list.slice().sort((a, b) => a.name.localeCompare(b.name));
 
-  export const selectExercisesWithAliases = (state: RootState) => 
-    state.exercise.list.map((exercise) => ({
-      ...exercise,
-      terms: [exercise.name, ...exercise.alias]
-    }));
+export const selectExercisesWithAliases = (state: RootState) =>
+  state.exercise.list.map((exercise) => ({
+    ...exercise,
+    terms: [exercise.name, ...exercise.alias],
+  }));
 // export const selectProgrammeStatus = (state: RootState) =>
 //   state.programme.status;
 // export const selectProgrammeError = (state: RootState) => state.programme.error;
 
-export const {  } =
-  exerciseSlice.actions;
+export const {} = exerciseSlice.actions;
 
 export default exerciseSlice.reducer;

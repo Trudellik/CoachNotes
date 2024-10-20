@@ -1,4 +1,4 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../config/configureStore';
+import { RootState } from '../app/store';
 
 export const useAppSelector = useSelector.withTypes<RootState>();

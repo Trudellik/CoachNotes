@@ -17,11 +17,13 @@ const AddNoteComponent: React.FC<AddNoteComponentProps> = ({
   onSkipNote,
 }) => {
   const [noteType, setNoteType] = useState('');
-  const [validationMessage, setValidationMessage] = useState(''); 
+  const [validationMessage, setValidationMessage] = useState('');
 
   const handleSave = () => {
     if (noteType.trim() === '') {
-      setValidationMessage('Note type cannot be empty. Please enter a valid type.');
+      setValidationMessage(
+        'Note type cannot be empty. Please enter a valid type.'
+      );
       return;
     }
 
@@ -67,7 +69,7 @@ const AddNoteComponent: React.FC<AddNoteComponentProps> = ({
             }
           }}
           fullWidth
-          autoFocus 
+          autoFocus
           sx={{ backgroundColor: '#ffffff' }}
         />
         <IconButton color="primary" onClick={handleSave}>

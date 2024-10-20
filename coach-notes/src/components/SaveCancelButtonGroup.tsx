@@ -9,7 +9,7 @@ interface SaveCancelButtonGroupProps {
 const SaveCancelButtonGroup = ({
   onSave,
   onCancel,
-}:SaveCancelButtonGroupProps) => {
+}: SaveCancelButtonGroupProps) => {
   return (
     <>
       <Button variant="contained" color="primary" onClick={onSave}>

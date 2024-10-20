@@ -41,7 +41,7 @@ const PreparationNotes = ({
   const handleAddNote = (newNote: Note) => {
     setEditableNotes((prevNotes) => [...prevNotes, newNote]);
     setShowAddNoteInput(false);
-    setFocusedNoteId(newNote.id); // Set the new note to be focused
+    setFocusedNoteId(newNote.id);
   };
 
   const handleSkipNewNote = () => {
@@ -59,38 +59,33 @@ const PreparationNotes = ({
       </Typography>
 
       {/* Display existing notes if available */}
-      {editableNotes.length > 0 ? (
-        editableNotes.map((note) => (
-          <NoteItem
-            key={note.id}
-            note={note}
-            isEditMode={isEditMode}
-            handleRemoveNote={handleRemoveNote}
-            handleNoteChange={handleNoteChange}
-            autoFocus={note.id === focusedNoteId} // Autofocus on the new note
-          />
-        ))
-      ) : (
-        // Show the placeholder message only if `AddNoteComponent` is not visible
-        !showAddNoteInput && (
-          <Typography
-            variant="body1"
-            sx={{
-              backgroundColor: '#fce4ec',
-              padding: '16px',
-              borderRadius: '8px',
-              textAlign: 'center',
-              marginBottom: '16px',
-              fontStyle: 'italic',
-            }}
-          >
-            Hmm... looks like there aren't any notes yet. <br />
-            Want to add one?
-          </Typography>
-        )
-      )}
-
-      {/* If in edit mode, show the AddNoteComponent or Add Note Button based on `showAddNoteInput` */}
+      {editableNotes.length > 0
+        ? editableNotes.map((note) => (
+            <NoteItem
+              key={note.id}
+              note={note}
+              isEditMode={isEditMode}
+              handleRemoveNote={handleRemoveNote}
+              handleNoteChange={handleNoteChange}
+              autoFocus={note.id === focusedNoteId}
+            />
+          ))
+        : !showAddNoteInput && (
+            <Typography
+              variant="body1"
+              sx={{
+                backgroundColor: '#fce4ec',
+                padding: '16px',
+                borderRadius: '8px',
+                textAlign: 'center',
+                marginBottom: '16px',
+                fontStyle: 'italic',
+              }}
+            >
+              Hmm... looks like there aren't any notes yet. <br />
+              Want to add one?
+            </Typography>
+          )}
       {isEditMode &&
         (showAddNoteInput ? (
           <AddNoteComponent

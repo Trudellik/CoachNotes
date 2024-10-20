@@ -21,7 +21,7 @@ const commonAliases = {
   kb: 'kettlebell',
   db: 'dumbbell',
   'c&j': 'clean & jerk',
-  hs: 'handstand'
+  hs: 'handstand',
 };
 
 const ExerciseList = () => {
@@ -37,20 +37,21 @@ const ExerciseList = () => {
   const getExpandedSearchTerm = (term) => {
     const words = term.toLowerCase().split(' ');
     return words
-      .map(word => commonAliases[word] ? commonAliases[word] : word)
+      .map((word) => (commonAliases[word] ? commonAliases[word] : word))
       .join(' ');
   };
 
-  const filteredExercises = useMemo(
-    () => {
-      const expandedSearchTerm = getExpandedSearchTerm(searchTerm);
-      return exercises.filter((exercise) =>
+  const filteredExercises = useMemo(() => {
+    const expandedSearchTerm = getExpandedSearchTerm(searchTerm);
+    return exercises.filter(
+      (exercise) =>
         exercise.name.toLowerCase().includes(expandedSearchTerm) ||
-        (exercise.alias && exercise.alias.some(alias => alias.toLowerCase().includes(expandedSearchTerm)))
-      );
-    },
-    [exercises, searchTerm]
-  );
+        (exercise.alias &&
+          exercise.alias.some((alias) =>
+            alias.toLowerCase().includes(expandedSearchTerm)
+          ))
+    );
+  }, [exercises, searchTerm]);
 
   const handleOpenDialog = () => {
     setOpen(true);
@@ -78,16 +79,28 @@ const ExerciseList = () => {
       />
       <Grid container spacing={3} style={{ marginBottom: '24px' }}>
         {filteredExercises.map((exercise) => (
-        <Grid item xs={12} sm={6} md={4} key={exercise.id} alignItems='center' justifyContent='center'>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            key={exercise.id}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Card>
               <CardActionArea component={Link} to={`/exercise/${exercise.id}`}>
                 <CardMedia
                   component="img"
                   height="150"
-                  image={exercise.previewImage ? exercise.previewImage : 'src/assets/exercise-preview.jpeg'}
+                  image={
+                    exercise.previewImage
+                      ? exercise.previewImage
+                      : 'src/assets/exercise-preview.jpeg'
+                  }
                   alt={`${exercise.name} preview`}
                   sx={{
-                    backgroundColor: '#f0f0f0'
+                    backgroundColor: '#f0f0f0',
                   }}
                 />
                 <CardContent>
@@ -97,7 +110,7 @@ const ExerciseList = () => {
                     style={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap'
+                      whiteSpace: 'nowrap',
                     }}
                   >
                     {exercise.name}
@@ -107,7 +120,14 @@ const ExerciseList = () => {
             </Card>
           </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4} alignItems='center' justifyContent='center'>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={4}
+          alignItems="center"
+          justifyContent="center"
+        >
           <Card>
             <CardActionArea onClick={handleOpenDialog}>
               <CardContent
@@ -115,21 +135,23 @@ const ExerciseList = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  height: '135px'
+                  height: '135px',
                 }}
               >
                 <AddIcon style={{ fontSize: 50 }} />
               </CardContent>
               <CardActions style={{ justifyContent: 'center' }}>
-                <Typography variant="h6">
-                  Add New Exercise
-                </Typography>
+                <Typography variant="h6">Add New Exercise</Typography>
               </CardActions>
             </CardActionArea>
           </Card>
         </Grid>
       </Grid>
-      <AddExerciseDialog open={open} onClose={handleCloseDialog} onAdd={handleAddExercise} />
+      <AddExerciseDialog
+        open={open}
+        onClose={handleCloseDialog}
+        onAdd={handleAddExercise}
+      />
     </Container>
   );
 };

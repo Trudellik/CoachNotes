@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Note } from '../../types/Models';
-import { toUpperFirstCase } from '../../utils/testUtil';
+import { toUpperFirstCase } from '../../utils/textUtil';
 
 interface NoteItemProps {
   note: Note;
