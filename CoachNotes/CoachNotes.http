@@ -1,0 +1,6 @@
+@CoachNotes_HostAddress = http://localhost:5025
+
+GET {{CoachNotes_HostAddress}}
+Accept: application/json
+
+###
